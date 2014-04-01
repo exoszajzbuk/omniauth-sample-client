@@ -12,6 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @user = User.find_or_create_for_doorkeeper_oauth(oauth_data)
     @user.update_doorkeeper_credentials(oauth_data)
+    @user.reauthorization_needed = false
     @user.save
 
     sign_in_and_redirect @user

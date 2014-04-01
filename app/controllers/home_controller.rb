@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   private
 
   def authorize!
-    unless user_signed_in?
+    if !user_signed_in? || (user_signed_in? && current_user.reauthorization_needed?)
       session[:container_id] = '12345'
       redirect_to user_omniauth_authorize_path(:doorkeeper)
     end

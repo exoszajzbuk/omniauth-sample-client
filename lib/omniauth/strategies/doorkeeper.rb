@@ -22,18 +22,6 @@ module OmniAuth
         @raw_info ||= access_token.get('/me').parsed
       end
 
-      def authorize_params
-        super.tap do |params|
-          %w[state].each do |v|
-            if request.params[v]
-              params[v.to_sym] = request.params[v]
-            end
-          end
-
-          #params[:scope] ||= DEFAULT_SCOPE
-        end
-      end
-      
     end
   end
 end

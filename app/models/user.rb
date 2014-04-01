@@ -1,12 +1,14 @@
 class User
   include Mongoid::Document
 
-  devise :omniauthable,
-         :timeoutable, :timeout_in => 1.minutes
+  devise :omniauthable
 
   field :doorkeeper_uid, type: String
   field :doorkeeper_access_token, type: String
+  
   field :email, type: String
+
+  field :reauthorization_needed, type: Boolean, default: true
 
   def self.find_or_create_for_doorkeeper_oauth(oauth_data)
     User.find_or_initialize_by(doorkeeper_uid: oauth_data.uid).tap do |user|
