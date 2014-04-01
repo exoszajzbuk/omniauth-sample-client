@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class ApiController < ApplicationController
   
   def deauthorize
     user = User.where(doorkeeper_uid: params[:remote_user_id]).first

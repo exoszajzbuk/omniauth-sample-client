@@ -4,7 +4,7 @@ OmniauthSaluqiClient::Application.routes.draw do
   get '/home/index'
   get '/home/blabla'
 
-  get '/users/deauthorize'
+  get '/users/deauthorize' => 'api#deauthorize'
 
   root to: 'home#index'
 end
